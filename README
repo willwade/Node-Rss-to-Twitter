@@ -3,7 +3,14 @@ An app to read an RSS feed and publish new posts to twitter.
 Services such as http://twitterfeed.com/ only check your RSS every 30 minutes, this script can be configured to be run as fast as you like.
 
 Installation:
- - RSS url is set in the script
  - Requires the creation of a twitter app
- - Twitter app OAuth details need to be added to the script
+ - Twitter app OAuth details need to be provided as env vars
  - The file lastestPostedDate.txt needs to be writable. The script will publish any stories with pubDate after this
+ - RSS url is set in the script or as env var
+ - Set the variables with some environmental variables:
+ 
+export twitterConsumerKey=key
+export twitterConsumerSecret=key
+export twitterAccessToken=key
+export witterAccessTokenSecret=key
+export rssUrl=urlofrssfeed
