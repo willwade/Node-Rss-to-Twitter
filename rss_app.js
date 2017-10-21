@@ -5,20 +5,44 @@ fs = require('fs'),
 Twit = require('twit');
 
 // Config variables
-var rssUrl = 'http://feeds.bbci.co.uk/news/rss.xml';
-var intervalLength = 2000;
+if (!process.env.rssUrl){
+	var rssUrl = 'https://openassistive.org/index.xml';
+} else {
+	var rssUrl = process.env.rssUrl;
+}
+
+if (!process.env.intervalLength){
+	var intervalLength = 3600000;
+} else {
+	var intervalLength = process.env.intervalLength;
+}
 
 // Setup vars for twitter posting
-var twitterConsumerKey = '...';
-var twitterConsumerSecret = '...';
-var twitterAccessToken = '...';
-var twitterAccessTokenSecret = '...';
+if (!process.env.twitterConsumerKey){
+  console.error('No twitterConsumerKey env var set! Now quitting');
+  process.exit(-1);
+}
+
+if (!process.env.twitterConsumerSecret){
+  console.error('No twitterConsumerSecret env var set! Now quitting');
+  process.exit(-1);
+}
+
+if (!process.env.twitterAccessToken){
+  console.error('No twitterAccessToken env var set! Now quitting');
+  process.exit(-1);
+}
+
+if (!process.env.twitterAccessTokenSecret){
+  console.error('No twitterAccessTokenSecret env var set! Now quitting');
+  process.exit(-1);
+}
 
 var twitter = new Twit({
-    consumer_key:         twitterConsumerKey
-  , consumer_secret:      twitterConsumerSecret
-  , access_token:         twitterAccessToken
-  , access_token_secret:  twitterAccessTokenSecret
+    consumer_key:         process.env.twitterConsumerKey
+  , consumer_secret:      process.env.twitterConsumerSecret
+  , access_token:         process.env.twitterAccessToken
+  , access_token_secret:  process.env.twitterAccessTokenSecret
 });
 
 // Get date of latest posted article
